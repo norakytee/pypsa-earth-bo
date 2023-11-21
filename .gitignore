@@ -66,3 +66,11 @@ doc/*.vscode/settings.json
 # Additional debugging folders
 backup*
 screenlog*
+
+# Different runs
+results_RC_10_test_2/
+results_RC_10_test/
+results_base_no_solar/
+results_base_no_expansion/
+results_base_noexp2021/
+results_copy/

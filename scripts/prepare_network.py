@@ -205,7 +205,9 @@ def set_transmission_limit(n, ll_type, factor, costs, Nyears=1):
     update_transmission_costs(n, costs)
 
     if factor == "opt" or float(factor) > 1.0:
-        n.lines["s_nom_min"] = lines_s_nom
+        #n.lines["s_nom_min"] = lines_s_nom
+        #Change:
+        n.lines["s_nom_min"] = n.lines["s_nom"]
         n.lines["s_nom_extendable"] = True
 
         n.links.loc[links_dc_b, "p_nom_min"] = n.links.loc[links_dc_b, "p_nom"]

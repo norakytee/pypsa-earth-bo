@@ -609,7 +609,7 @@ def attach_hydro(n, costs, ppl):
                 else 0.0
             ),
             marginal_cost=costs.at["hydro", "marginal_cost"],
-            p_max_pu=1.0,  # dispatch
+            p_max_pu=0.50,  # dispatch
             p_min_pu=0.0,  # store
             efficiency_dispatch=costs.at["hydro", "efficiency"],
             efficiency_store=0.0,

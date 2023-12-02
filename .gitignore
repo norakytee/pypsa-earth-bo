@@ -66,3 +66,16 @@ doc/*.vscode/settings.json
 # Additional debugging folders
 backup*
 screenlog*
+
+# Different runs
+results_base/
+results_base_cap/
+results_base_cap_restricted/
+results_base_cap_restricted_400/
+results_base_cap_restricted_bat/
+results_cost_gradual/
+results_cost_gradual_cap/
+results_cost_gradual_restricted/
+results_cost_sudden/
+results_cost_sudden_cap/
+results_Xenia/

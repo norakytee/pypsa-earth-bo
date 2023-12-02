@@ -477,6 +477,27 @@ def add_RES_constraints(n, res_share):
 
     define_constraints(n, lhs, "=", rhs, "RES share")
 
+def new_solar_capacity_constraint(n):
+    solar_i = n.generators.query("carrier == 'solar'").index
+    p_nom_current = get_var(n, "Generator", "p_nom")[solar_i]
+    lhs = linexpr((1,p_nom_current)).sum()
+    rhs = n.generators.loc[solar_i,'p_nom'].sum() + 400
+    define_constraints(n, lhs, '<=', rhs, 'Generator', 'new_solar_capacity')
+
+def new_wind_capacity_constraint(n):
+    onwind_i = n.generators.query("carrier == 'onwind'").index
+    p_nom_current = get_var(n, "Generator", "p_nom")[onwind_i]
+    lhs = linexpr((1,p_nom_current)).sum()
+    rhs = n.generators.loc[onwind_i,'p_nom'].sum() + 400
+    define_constraints(n, lhs, '<=', rhs, 'Generator', 'new_wind_capacity')
+
+def new_biomass_capacity_constraint(n):
+    biomass_i = n.generators.query("carrier == 'biomass'").index
+    p_nom_current = get_var(n, "Generator", "p_nom")[biomass_i]
+    lhs = linexpr((1,p_nom_current)).sum()
+    rhs = n.generators.loc[biomass_i,'p_nom'].sum() + 400
+    define_constraints(n, lhs, '<=', rhs, 'Generator', 'new_biomass_capacity')
+
 
 def extra_functionality(n, snapshots):
     """
@@ -505,6 +526,9 @@ def extra_functionality(n, snapshots):
         if "EQ" in o:
             add_EQ_constraints(n, o)
     add_battery_constraints(n)
+    new_solar_capacity_constraint(n)
+    new_wind_capacity_constraint(n)
+    new_biomass_capacity_constraint(n)
 
 
 def solve_network(n, config, opts="", **kwargs):
